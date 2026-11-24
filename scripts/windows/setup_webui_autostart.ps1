@@ -65,7 +65,7 @@ $description = "Auto-start Hermes WebUI inside WSL at Windows logon. Runs $WslSc
 $action = New-ScheduledTaskAction -Execute $wslExe -Argument $actionArguments
 $trigger = New-ScheduledTaskTrigger -AtLogOn
 $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$principal = New-ScheduledTaskPrincipal -UserId $currentUser -LogonType Interactive -RunLevel LeastPrivilege
+$principal = New-ScheduledTaskPrincipal -UserId $currentUser -LogonType Interactive -RunLevel Limited
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew
 $existingTask = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
 
